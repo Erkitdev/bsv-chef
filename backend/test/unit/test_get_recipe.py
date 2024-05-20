@@ -27,13 +27,13 @@ def test_getRecipe_compliant_strategy_false(sut = mock.MagicMock()):
 @pytest.mark.unit
 def test_getRecipe_notcompliant(sut = mock.MagicMock()):
     sut.get_readiness_of_recipes.return_value = {}
-    result = RecipeController.get_recipe(sut, diet="not compliant", take_best=False)
+    result = RecipeController.get_recipe(sut, diet="not compliant", take_best=True)
     assert result == None
 
 @pytest.mark.unit
-def test_getRecipe_notcompliant(sut = mock.MagicMock()):
+def test_getRecipe_low_readiness(sut = mock.MagicMock()):
     sut.get_readiness_of_recipes.return_value = {
         "Recipe1": 0.09
     }
-    result = RecipeController.get_recipe(sut, diet=Diet.NORMAL, take_best=False)
+    result = RecipeController.get_recipe(sut, diet=Diet.NORMAL, take_best=True)
     assert result == None
